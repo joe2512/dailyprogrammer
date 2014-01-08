@@ -25,14 +25,17 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define BRAILLESIZE 6
 
 char brailleLetter(char braille[BRAILLESIZE]);
+// THINKS ABOUT REMOVING THE VAR NAME IN LINE ABOVE
+
 
 int main()
 {
-	const char input[] = "O. O. O. O. O. .O O. O. O. OO\nOO .O O. O. .O OO .O OO O. .O\n.. .. O. O. O. .O O. O. O. ..";
+	char input[] = "O. O. O. O. O. .O O. O. O. OO\nOO .O O. O. .O OO .O OO O. .O\n.. .. O. O. O. .O O. O. O. ..";
 	const char delimiter[] = "\n", delimiter2[] = " ";
 	char *row1, *row2, *row3, brl_digits[BRAILLESIZE] = "110011";
 	int x = 0, no_of_letters, i;

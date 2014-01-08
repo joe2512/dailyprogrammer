@@ -25,48 +25,41 @@
 #define TRUE 1
 #define FALSE 0
 
-int isBoolean(char *line);
+int isPangram(char *);
 
 int main()
 {
-	const char input[] = "3\nThe quick brown fox jumps over the lazy dog.\nPack my box with five dozen liquor jugs.\nSaxophones quickly blew over my jazzy hair.";
+	char input[] = "3\nThe quick brown fox jumps over the lazy dog.\nPack my box with five dozen liquor jugs.\nSaxophones quickly blew over my jazzy hair.";
 	const char delimiter[] = "\n";
-	char *sentence, *n;
-	int i;
+	char *sentence;
 	
-	n = strtok(input, delimiter);
-	printf("%s\n", n);
+	strtok(input, delimiter);
 	
 	while(sentence != NULL) {
 		sentence = strtok(NULL, delimiter);
-// 		printf("%s\n", sentence);
-
+		
 		if (sentence == NULL)
 			break;
 		
  		if (isPangram(sentence) == TRUE) {
- 			printf("yes");
+ 			printf("True\n");
  		} else {
- 			printf("no");
+ 			printf("False\n");
  		}
 	}
-
-
-
 }
 
 /* tests if a string is a pangram */
 int isPangram(char *line)
 {
-	char a[] = "T";
+	char letter;
 	
-// look up strstr could be useful here	
-
-	printf("%s\n", line);
+// 	for each letter from a-z, checks if line contains it and returns false if not
+	for (letter = 'a'; letter != 'z'; letter++) {
+		if (strchr(line, letter) == NULL) {
+			return FALSE;
+		}
+	}
 	
-	if (strncmp(line, a, 1) == 0) {
-		return TRUE;
-	} else {
-		return FALSE;
-	} 
+	return TRUE;
 }

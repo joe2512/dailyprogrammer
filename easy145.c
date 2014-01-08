@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void makeTree(char input[]);
+void makeTree(char []);
 
 int main()
 {
@@ -56,10 +56,6 @@ void makeTree(char input[])
 	width = *size - '0';
 	height = (width - 1) * 2;
 	
-// 	printf("%s\n", size);
-// 	printf("%d\n", width);
-// 	printf("%d\n", height);
-	
 // 	prints one line at a time of the tree, determines number of " " and "+" to be printed
 	for (i = 1; i <= width; i += 2) {
 		for (j = 1; j <= (width - i); j += 2)
@@ -76,3 +72,6 @@ void makeTree(char input[])
 		printf("%s", base);
 	printf("\n\n");
 }
+
+// SHOULD MAINS ALWAYS END return 0; ??
+// think easy 143 is now possible
