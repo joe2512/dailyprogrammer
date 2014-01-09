@@ -17,8 +17,6 @@
 // For each line of input, print either "True" if the given line was a pangram, or 
 // "False" if not.
 
-// UNFINISHED
-
 #include <stdio.h>
 #include <string.h>
 
