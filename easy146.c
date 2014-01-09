@@ -20,14 +20,43 @@
 // up to three digits precision.
 
 #include <stdio.h>
+#include <math.h>
 
 int main() {
-	char a[2], b[6];
+	char n[4], circumradius[7];
+ 	double perimeter;
+	int ni;
+	float circumradiusi;
 	
-	printf("Enter the number of sides of the regular polygon: ");
-	fgets(a, sizeof(a), stdin);
-	printf("Enter the circumradius: ");
-	fgets(b, sizeof(b), stdin);
-	printf("one %s and then two %s", a, b);
-
+//  obtain input
+	printf("Enter the number of sides of the regular polygon (1-100): ");
+	fgets(n, sizeof(n) + 1, stdin);
+	printf("Enter the circumradius (max 6 digits): ");
+	fgets(circumradius, sizeof(circumradius), stdin);
+	
+// 	convert the arrays to integers
+	sscanf(n, "%d", &ni);
+	sscanf(circumradius, "%f", &circumradiusi);
+	
+// 	following is the formula for finding perimeter given the circumradius and number of sides
+	perimeter = circumradiusi * 2 * sin ( M_PI / ni) * ni;
+	
+	printf("\nThe perimeter of this shape is %f\n", perimeter);
+	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

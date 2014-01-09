@@ -75,3 +75,5 @@ void makeTree(char input[])
 
 // SHOULD MAINS ALWAYS END return 0; ??
 // think easy 143 is now possible
+// SHOULD USE *another = "name" syntax for making strings
+// check if as many variables as in easy 143 is ok

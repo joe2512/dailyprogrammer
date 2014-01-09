@@ -21,68 +21,61 @@
 // 
 // Print the transcribed Braille.
 
-// UNFINISHED
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
 #define BRAILLESIZE 6
 
-char brailleLetter(char braille[BRAILLESIZE]);
-// THINKS ABOUT REMOVING THE VAR NAME IN LINE ABOVE
+char brailleLetter(char [BRAILLESIZE]);
 
 
 int main()
 {
 	char input[] = "O. O. O. O. O. .O O. O. O. OO\nOO .O O. O. .O OO .O OO O. .O\n.. .. O. O. O. .O O. O. O. ..";
 	const char delimiter[] = "\n", delimiter2[] = " ";
-	char *row1, *row2, *row3, brl_digits[BRAILLESIZE] = "110011";
-	int x = 0, no_of_letters, i;
+	char *row1, *row2, *row3, brl_digits[BRAILLESIZE];
+	int x = 0, no_of_letters, i, j, start, adder = 0;
 	
-// Assign each of the 3 rows of the input to variables.
-	printf("Input Braille:\n");
-	do {
-		if (x == 0) {
-			row1 = strtok(input, delimiter);
-			printf("%s\n", row1);
-		} else if (x == 1) {
-			row2 = strtok(NULL, delimiter);
-			printf("%s\n", row2);
-		} else if (x == 2) {
-			row3 = strtok(NULL, delimiter);
-			printf("%s\n", row3);
-		}
-		x++;
-	} while (x <= 3);
+	no_of_letters = (strlen(input) + 1) / 9;
 	
-	no_of_letters = (strlen(row1) + 1) / 3;
-	
+//	find the position of the "bumps"
+	for (i = 1; i <= no_of_letters; i++) {
+		for (j = 1; j <= 6; j++) {
+				start = (i - 1) * 3; // used to find the first braille "bump"
+				adder = 0;			 // used to find the other five braille "bumps"
+			if (j == 3 || j == 4)
+				adder += no_of_letters * 3;
+			else if (j == 5 || j == 6)
+				adder += no_of_letters * 6;
+			adder += (j - 1) % 2;
+		
 // 	Convert the braille to 6 digits then pass the digits to brailleLetter
-// 	for (i = 1; i <= no_of_letters; i++) {
-// 	
-// 	}
-// 	printf("%d", no_of_letters);
+			if (input[start + adder] == 'O') {
+				brl_digits[j - 1] = '1';
+			} else if (input[start + adder] == '.') {
+				brl_digits[j - 1] = '0';
+			} else if (input[start + adder] == ' ') {
+			}
+			
+		}
+		printf("%c", brailleLetter(brl_digits));
+	}
+	printf("\n\n");
 	
-	brailleLetter(brl_digits);	
-}
+	return 0;	
+} 
 
 /* inputs Braille as 6 bit binary number eg. 101011 where 1s are raised and 0s are lowered,
 	and the bumps are read left to right one row at a time - returns a letter */
 char brailleLetter(char braille[BRAILLESIZE])
 {
 	int brl_binary;
-	char braille_letters[] = "                     s i   j t a kue ozb lvh r c m dxnyf p g q ";
-	char a;
+	char braille_letters[] = "                     s i   jwt a kue ozb lvh r  cm dxnyf p g q ";
 	
 // 	finds the decimal representation of the 6 binary digits
 	brl_binary = strtol(braille, (char **)0, 2);
-	printf("%d\n", brl_binary);
-	
-//  looks up the nth position in the array of the decimal representation which keeps 
-//  the values 
-	a = braille_letters[51];
-	printf("%d\n", braille_letters[brl_binary]);
-	printf("%d\n", a);
-	/* current problem is this prints out numbers instead of the chars it should */
+//	returns where it is in the braile_letters string
+	return braille_letters[brl_binary - 1];
+
 }
