@@ -77,3 +77,4 @@ void makeTree(char input[])
 // think easy 143 is now possible
 // SHOULD USE *another = "name" syntax for making strings
 // check if as many variables as in easy 143 is ok
+// do we need to delare functions? it seems like in C the hard way he doesn't but does in K&R
